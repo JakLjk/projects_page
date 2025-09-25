@@ -39,13 +39,13 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'projects.apps.ProjectsConfig',
-    'pages.apps.PagesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'markdownify.apps.MarkdownifyConfig'
 ]
 
 MIDDLEWARE = [
@@ -135,3 +135,28 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_ROOT = BASE_DIR / "uploads/"
+MEDIA_URL = "media/"
+
+
+MARKDOWNIFY = {
+    "default": {
+        "MARKDOWN_EXTENSIONS": ["extra", "fenced_code", "tables", "sane_lists"],
+        "WHITELIST_TAGS": [
+            "p","pre","code","hr","br",
+            "h1","h2","h3","h4","h5","h6",
+            "ul","ol","li","blockquote",
+            "table","thead","tbody","tr","th","td",
+            "a","em","strong","img"
+        ],
+        # KLUCZOWE: zezwól na `class` na <code>
+        "WHITELIST_ATTRS": {
+            "a": ["href","title","target","rel"],
+            "img": ["src","alt"],
+            "code": ["class"],        # <–– to zatrzymuje language-bash
+        },
+        "WHITELIST_PROTOCOLS": ["http","https","mailto"],
+        "STRIP": True,
+    }
+}

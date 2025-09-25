@@ -1,0 +1,13 @@
+
+services:
+  porftofio:
+    build: .
+    container_name: portfolio_page
+    ports:
+      - "8075:8000" 
+    env_file:
+      - .env                
+    restart: unless-stopped
+    user: "${UID:-1000}:${GID:-1000}"
+    volumes:
+    - /home/dell/SharedFolder/NGINX_STATICFILES:/NGINX_STATICFILES
