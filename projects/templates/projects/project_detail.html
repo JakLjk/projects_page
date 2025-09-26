@@ -31,6 +31,10 @@
       <hr class="my-2 border-top border-2 border-dark opacity-100">
 
   <div class="vstack gap-2 mb-3">
+    {% if project.powerbi_iframe_url %}
+      <a class="btn btn-primary" href="{% url 'project_pbi' project.pk %}" target="_blank" rel="noopener">PowerBI demo</a>
+    {% endif %}
+
     {% if project.live_demo_link %}
       <a class="btn btn-primary" href="{{ project.live_demo_link }}" target="_blank" rel="noopener">Live demo</a>
     {% endif %}

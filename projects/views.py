@@ -31,3 +31,10 @@ def project_documentation(request, pk):
     else:
         resp["Content-Disposition"] = f'inline; filename="{filename}'
     return resp
+
+def project_powerbi_live(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+    context = {
+        "project":project
+    }
+    return render(request, "projects/project_pbi_live.html", context)
